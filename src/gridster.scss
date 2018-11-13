@@ -1,0 +1,39 @@
+gridster {
+    background-color: transparent !important;
+    &.display-grid {
+        background-color: rgba(0, 0, 0, 0.1) !important;
+    }
+}
+
+.gridster-column,
+.gridster-row {
+    border-color: $primary !important;
+}
+
+gridster-item {
+    @extend .card;
+    @extend .p-2;
+    @extend .pt-3;
+    .drag-handler {
+        cursor: move !important;
+        position: absolute;
+        top: -1.35rem;
+        left: 0;
+        line-height: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0;
+        z-index: 10;
+        i {
+            color: transparent;
+            font-size: 1rem;
+            transition: color 250ms ease-in-out;
+        }
+        &:hover {
+            top: 0;
+            i {
+                color: #fff;
+            }
+        }
+        transition: top 250ms ease-out;
+    }
+}

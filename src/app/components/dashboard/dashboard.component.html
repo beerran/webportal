@@ -1,8 +1,0 @@
-<gridster [options]="options">
-    <gridster-item [item]="tile" *ngFor="let tile of (tiles$ | async)">
-        <app-tile [tile]="tile"></app-tile>
-        <button class="drag-handler btn btn-dark">
-          <i class="fa fa-arrows-alt"></i>
-        </button>
-    </gridster-item>
-</gridster>

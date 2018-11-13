@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
       gridType: 'fit',
       minCols: 9,
       maxCols: 9,
-      minRows: 3,
+      minRows: 5,
       defaultItemCols: 3,
       defaultItemRows: 2,
       scrollToNewItems: true,
