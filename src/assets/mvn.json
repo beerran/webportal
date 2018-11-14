@@ -1,9 +1,9 @@
 [
-    { "product": "Cash", "trade_date": 4000000, "value_date": 5400000 },
-    { "product": "Cash Financing", "trade_date": -500000, "value_date": -780000 },
-    { "product": "Collateral", "trade_date": 500000, "value_date": 800000 },
-    { "product": "Derivaties", "trade_date": 200000, "value_date": 100000 },
-    { "product": "Fixed Income", "trade_date": 6400000, "value_date": 4600000 },
-    { "product": "Equities", "trade_date": 300000, "value_date": 560000 },
-    { "product": "Securities Lending", "trade_date": -200000, "value_date": -560000 }
+    { "product": "Product 1", "trade_date": 4000000, "value_date": 5400000 },
+    { "product": "Product 2", "trade_date": -500000, "value_date": -780000 },
+    { "product": "Product 3", "trade_date": 500000, "value_date": 800000 },
+    { "product": "Product 4", "trade_date": 200000, "value_date": 100000 },
+    { "product": "Product 5", "trade_date": 6400000, "value_date": 4600000 },
+    { "product": "Product 6", "trade_date": 300000, "value_date": 560000 },
+    { "product": "Product 7", "trade_date": -200000, "value_date": -560000 }
 ]

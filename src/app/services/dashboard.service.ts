@@ -1,3 +1,4 @@
+import { ChartPanelConfig } from './../modules/dashboard/panel.base';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -13,8 +14,11 @@ export class DashboardService {
         this.data$ = of([
             new Tile(
                 [
-                    new TilePanel(new Panel('market-value-net-graph', 'Market Value Net Graph', 'assets/mvn.json', 'table'), 6),
-                    new TilePanel(new Panel('market-value-net-table', 'Market Value Net Table', 'assets/mvn.json', 'table'), 6)
+                    new TilePanel(new Panel('market-value-net-graph', 'Market Value Net Graph',
+                    {endpoint: 'assets/mvn.json', fields: this.getTableFields(), label_property: 'product'} as ChartPanelConfig,
+                    'column'), 6),
+                    new TilePanel(new Panel('market-value-net-table', 'Market Value Net Table',
+                    {endpoint: 'assets/mvn.json', fields: this.getTableFields()}, 'table'), 6)
                 ],
                 0,
                 0,
@@ -23,7 +27,8 @@ export class DashboardService {
             ),
             new Tile(
                 [
-                    new TilePanel(new Panel('market-value-net-table', 'Market Value Net Table', 'assets/mvn.json', 'table'), 12)
+                    new TilePanel(new Panel('market-value-net-table', 'Market Value Net Table',
+                    {endpoint: 'assets/mvn.json', fields: this.getTableFields()}, 'table'), 12)
                 ],
                 6,
                 0,
@@ -31,6 +36,13 @@ export class DashboardService {
                 2
             )
         ]);
+    }
+    private getTableFields() {
+        return [
+            { 'display_name': 'Product', 'name': 'product', 'type': 'text' },
+            { 'display_name': 'Trade date', 'name': 'trade_date', 'type': 'decimal' },
+            { 'display_name': 'Value date', 'name': 'value_date', 'type': 'decimal' }
+        ];
     }
     getTiles(): Observable<Tile[]> {
         return this.data$;

@@ -31,10 +31,6 @@ export class TablePanelComponent implements OnInit {
   private setupTableConfig(): void {
     this.tableConfig = new PrimeTableConfig('none');
     this.tableConfig.disable(['filters', 'rowCount', 'export']);
-    this.tableConfig.setColumns([
-      new PrimeTableColumn('Product', 'product'),
-      new PrimeTableColumn('Trade date', 'trade_date'),
-      new PrimeTableColumn('Value date', 'value_date'),
-    ]);
+    this.tableConfig.setColumns(this.panelConfig.fields.map(field => new PrimeTableColumn(field.display_name, field.name)));
   }
 }

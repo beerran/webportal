@@ -1,3 +1,4 @@
+import { ChartService } from 'src/app/services/chart.service';
 import { Component, OnInit } from '@angular/core';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 import { DashboardService } from 'src/app/services/dashboard.service';
@@ -14,7 +15,10 @@ export class DashboardComponent implements OnInit {
   options: GridsterConfig;
   dashboard: Array<GridsterItem>;
   tiles$: Observable<Tile[]>;
-  constructor(private dashboardService: DashboardService) { }
+  constructor(
+    private dashboardService: DashboardService,
+    private chartService: ChartService
+    ) { }
 
   static itemChange(item, itemComponent) {
     console.log('itemChanged', item, itemComponent);
@@ -29,18 +33,10 @@ export class DashboardComponent implements OnInit {
     this.tiles$ = this.dashboardService.getTiles();
   }
 
-  removeItem(item) {
-    this.dashboard.splice(this.dashboard.indexOf(item), 1);
-  }
-
-  addItem() {
-    this.dashboard.push({} as GridsterItem);
-  }
-
   setOptions() {
     this.options = {
-      itemChangeCallback: DashboardComponent.itemChange,
-      itemResizeCallback: DashboardComponent.itemResize,
+      itemChangeCallback: () => this.chartService.sendReflow(),
+      itemResizeCallback: () => this.chartService.sendReflow(),
       draggable: { enabled: true, ignoreContent: true },
       resizable: { enabled: true },
       gridType: 'fit',
@@ -51,7 +47,8 @@ export class DashboardComponent implements OnInit {
       defaultItemRows: 2,
       scrollToNewItems: true,
       pushResizeItems: true,
-      pushItems: true
+      pushItems: true,
+      gridSizeChangedCallback: () => this.chartService.sendReflow()
     };
   }
 
